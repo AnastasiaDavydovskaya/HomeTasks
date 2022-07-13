@@ -17,6 +17,10 @@ public class TaskSecond {
     }
 
     public static int toArabic(String roman) {
+        if (roman == null) {
+            return 0;
+        }
+
         int result = 0;
         for (int i = ARABIC_SYMBOLS.length - 1; i >= 0; i--) {
             while (roman.indexOf(ROMAN_SYMBOLS[i]) == 0 && ROMAN_SYMBOLS[i].length() > 0) {
