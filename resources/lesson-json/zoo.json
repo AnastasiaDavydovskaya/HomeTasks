@@ -1,0 +1,77 @@
+{
+  "components" : [ {
+    "class" : "by.tms.json.entities.inheritorsofcomponents.Ram",
+    "id" : 23,
+    "name" : "Оперативная память",
+    "origin" : "Иран",
+    "price" : 23456.0,
+    "critical" : true,
+    "volume" : 234
+  }, {
+    "class" : "by.tms.json.entities.inheritorsofcomponents.Monitor",
+    "id" : 1,
+    "name" : "Монитор",
+    "origin" : "Минск",
+    "price" : 345.0,
+    "critical" : true,
+    "screenDiagonal" : 14.0
+  }, {
+    "class" : "by.tms.json.entities.inheritorsofcomponents.Keyboard",
+    "id" : 2,
+    "name" : "Клавиатура",
+    "origin" : "Минск",
+    "price" : 356.0,
+    "critical" : true,
+    "color" : "Синий"
+  }, {
+    "class" : "by.tms.json.entities.inheritorsofcomponents.HDD",
+    "id" : 2,
+    "name" : "Жесткий диск",
+    "origin" : "Иран",
+    "price" : 8457.0,
+    "critical" : true,
+    "speed" : 3500
+  }, {
+    "class" : "by.tms.json.entities.inheritorsofcomponents.Motherboard",
+    "id" : 4,
+    "name" : "Материнская плата",
+    "origin" : "Латвия",
+    "price" : 765.0,
+    "critical" : true,
+    "socket" : "AM4"
+  }, {
+    "class" : "by.tms.json.entities.inheritorsofcomponents.Battery",
+    "id" : 6,
+    "name" : "Аккумулятор",
+    "origin" : "Азия",
+    "price" : 543.0,
+    "critical" : true,
+    "timeOfWork" : 6.5
+  }, {
+    "class" : "by.tms.json.entities.inheritorsofcomponents.CPU",
+    "id" : 7,
+    "name" : "Процессор",
+    "origin" : "Гродно",
+    "price" : 3215.0,
+    "critical" : true,
+    "model" : "i5"
+  }, {
+    "class" : "by.tms.json.entities.inheritorsofcomponents.Touchpad",
+    "id" : 7,
+    "name" : "Тачпад",
+    "origin" : "Минск",
+    "price" : 213.0,
+    "critical" : false,
+    "button" : 2
+  } ],
+  "type" : {
+    "peripheral" : true,
+    "energyConsumption" : 2300.0,
+    "cooler" : true
+  },
+  "size" : {
+    "width" : 363.0,
+    "thickness" : 22.9,
+    "weight" : 2200.0
+  }
+}
