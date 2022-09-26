@@ -27,9 +27,19 @@ public class ResultServlet extends HttpServlet {
                 request.getParameter("secretWord")));
 
         writer.println(String.format("<html><h3>Студенты:</h3>" +
-                students.toString() +
+                "<table border=\"1\">" +
+                "<tr><th>Имя студента</th><th>Язык программирования</th></tr>"));
+
+        for(Student student: students) {
+            writer.println("<tr>" +
+                    "<td>" + student.getName() + "</td>" +
+                    "<td>" + student.getLanguage() + "</td>" +
+                    "</tr>");
+        }
+
+        writer.println("</table>" +
                 "<h4>Перейти на <a href=\"/authorization\">главную страницу</a></h4>" +
-                "</html>"));
+                "</html>");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

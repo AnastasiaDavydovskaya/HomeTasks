@@ -13,9 +13,7 @@ public class AccessLogTwoFilter extends HttpFilter {
 
     @Override
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        if (!AccessLogFirstFilter.users.isEmpty()) {
-            getServletContext().getRequestDispatcher("/list/students/result").forward(request, response);
-        } else {
+        if (AccessLogFirstFilter.users.size() == 1) {
             getServletContext().getRequestDispatcher("/authorization").forward(request, response);
         }
 
