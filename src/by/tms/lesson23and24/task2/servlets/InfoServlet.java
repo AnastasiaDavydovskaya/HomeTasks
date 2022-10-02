@@ -1,5 +1,7 @@
 package by.tms.lesson23and24.task2.servlets;
 
+import by.tms.lesson23and24.task2.entities.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -7,12 +9,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "InfoServlet", urlPatterns = {"/course/information"})
 public class InfoServlet extends HttpServlet {
 
+    public static List<User> users = new ArrayList<>();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String addressInput = request.getParameter("addressInput");
+        String passwordInput = request.getParameter("passwordInput");
+        String addressRegistration = request.getParameter("addressRegistration");
+        String passwordRegistration = request.getParameter("passwordRegistration");
+
+        if (addressRegistration != null && passwordRegistration != null) {
+            users.add(new User(addressRegistration, passwordRegistration));
+            getServletContext().setAttribute("users", users);
+        } else if (addressInput != null && passwordInput != null) {
+            for (User user : (List<User>) getServletContext().getAttribute("users")) {
+                if (!user.equals(new User(addressInput, passwordInput))) {
+                    getServletContext().getRequestDispatcher("/authorization/error").forward(request, response);
+                }
+            }
+        }
+
         response.setContentType("text/html; charset=cp1251");
         PrintWriter writer = response.getWriter();
         writer.println("<html>" +

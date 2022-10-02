@@ -25,6 +25,14 @@ public class User {
         return Objects.hash(emailAddress, password);
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "emailAddress='" + emailAddress + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
     public String getEmailAddress() {
         return emailAddress;
     }
