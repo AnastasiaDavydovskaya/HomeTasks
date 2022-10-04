@@ -4,7 +4,7 @@
     <title>From</title>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/check" method="POST">
+<form action="/check" method="POST">
     Name:</br><input type="text" name="name"></br>
     Number:</br><input type="tel" name="number"></br>
     <input type="submit" value="Submit"></br>

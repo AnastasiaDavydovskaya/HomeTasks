@@ -6,23 +6,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet(name = "CheckServlet", value = "/check")
 public class CheckServlet extends HttpServlet {
 
-    public static List<User> users = new ArrayList<>();
+    public static Map<String, User> users = new HashMap();
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String name = request.getParameter("name");
         String number = request.getParameter("number");
 
-        if(name == null || number == null) {
+        if (name == null || number == null || number.length() < 12 || name.contains(" ")) {
             response.sendRedirect("/jsp/save.jsp");
         } else {
             User user = new User(name, number);
-            users.add(user);
+            users.put(number, user);
             getServletContext().setAttribute("users", users);
             request.setAttribute("user", user);
             getServletContext().getRequestDispatcher("/jsp/data.jsp").forward(request, response);

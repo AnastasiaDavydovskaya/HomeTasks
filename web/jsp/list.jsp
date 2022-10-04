@@ -1,5 +1,5 @@
-<%@ page import="java.util.List" %>
 <%@ page import="by.tms.lesson25and26.jspandservlets.User" %>
+<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -13,11 +13,12 @@
         <th>Номер</th>
     </tr>
     <%
-        for (User user : (List<User>) application.getAttribute("users")) {
+        Map<String, User> users = (Map<String, User>) application.getAttribute("users");
+        for (Map.Entry<String, User> user: users.entrySet()) {
             out.print(
                     "<tr>" +
-                            "<td>" + user.getName() + "</td>" +
-                            "<td>" + user.getNumber() + "</td>" +
+                            "<td>" + user.getValue().getName() + "</td>" +
+                            "<td>" + user.getKey() + "</td>" +
                             "</tr>");
         }
     %>
