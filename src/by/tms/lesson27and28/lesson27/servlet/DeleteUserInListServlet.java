@@ -1,5 +1,6 @@
 package by.tms.lesson27and28.lesson27.servlet;
 
+import by.tms.lesson27and28.lesson27.pojo.Result;
 import by.tms.lesson27and28.lesson27.pojo.User;
 
 import javax.servlet.ServletException;
@@ -25,12 +26,14 @@ public class DeleteUserInListServlet extends HttpServlet {
             if (user.getNumber().equals(parameter)) {
                 users.remove(user);
                 getServletContext().setAttribute("users", users);
-                getServletContext().getRequestDispatcher("/lesson27and28/result/successfulRemoval.jsp").forward(request, response);
+                getServletContext().setAttribute("result", Result.SUCCESS_DELETE);
+                getServletContext().getRequestDispatcher("/lesson27and28/result/result.jsp").forward(request, response);
             }
         }
 
         if(users.size() == initialSize) {
-            getServletContext().getRequestDispatcher("/lesson27and28/result/notFoundUser.jsp").forward(request, response);
+            getServletContext().setAttribute("result", Result.NOT_FOUND);
+            getServletContext().getRequestDispatcher("/lesson27and28/result/result.jsp").forward(request, response);
         }
     }
 
