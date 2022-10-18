@@ -1,7 +1,7 @@
 package by.tms.json.jsonrunner;
 
 
-import by.tms.json.entities.*;
+import by.tms.json.entities.Computer;
 import by.tms.json.entities.characteristicsofcomputer.Size;
 import by.tms.json.entities.characteristicsofcomputer.Type;
 import by.tms.json.entities.inheritorsofcomponents.*;
@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 
 public class JsonRunner {
@@ -28,7 +28,7 @@ public class JsonRunner {
         Computer computer = new Computer(Arrays.asList(ram, monitor, keyboard, hdd, motherboard, battery, cpu, touchpad), type, size);
 
         ObjectMapper objectMapper = new ObjectMapper();
-        File file = Path.of("resources", "lesson-json", "zoo.json").toFile();
+        File file = Paths.get("resources", "lesson-json", "zoo.json").toFile();
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, computer);
         } catch (IOException e) {
