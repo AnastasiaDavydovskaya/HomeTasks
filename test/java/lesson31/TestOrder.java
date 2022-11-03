@@ -29,10 +29,10 @@ public class TestOrder {
 
     static Stream<Arguments> testAddItemParams() {
         return Stream.of(
-                Arguments.of(4, new Item[4]),
-                Arguments.of(3, new Item[3]),
-                Arguments.of(2, new Item[2]),
-                Arguments.of(1, new Item[1]),
+                Arguments.of(4, new Item[] {new Item(), new Item(), new Item(), new Item()}),
+                Arguments.of(3, new Item[] {new Item(), new Item(), new Item()}),
+                Arguments.of(2, new Item[] {new Item(), new Item()}),
+                Arguments.of(1, new Item[] {new Item()}),
                 Arguments.of(0, null)
         );
     }
