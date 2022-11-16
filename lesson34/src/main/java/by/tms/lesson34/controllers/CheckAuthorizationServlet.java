@@ -1,5 +1,6 @@
 package by.tms.lesson34.controllers;
 
+import by.tms.lesson34.entities.Result;
 import by.tms.lesson34.entities.User;
 import by.tms.lesson34.services.UserService;
 
@@ -19,6 +20,7 @@ public class CheckAuthorizationServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         if (email.equals("") || password.equals("")) {
+            getServletContext().setAttribute("result", Result.NOT_FOUND);
             response.sendRedirect("/errorEnter.jsp");
         } else if (email.equals("admin@mail.ru") || password.equals("admin")) {
             getServletContext().getRequestDispatcher("/adminPage.jsp").forward(request, response);
@@ -29,6 +31,7 @@ public class CheckAuthorizationServlet extends HttpServlet {
                     getServletContext().getRequestDispatcher("/mainPage.jsp").forward(request, response);
                 }
             }
+            getServletContext().setAttribute("result", Result.NOT_FOUND);
             response.sendRedirect("/errorEnter.jsp");
         }
     }

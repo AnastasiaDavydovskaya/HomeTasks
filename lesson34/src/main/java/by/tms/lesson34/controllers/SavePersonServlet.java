@@ -1,5 +1,6 @@
 package by.tms.lesson34.controllers;
 
+import by.tms.lesson34.entities.Result;
 import by.tms.lesson34.entities.Role;
 import by.tms.lesson34.entities.User;
 import by.tms.lesson34.services.UserService;
@@ -19,12 +20,14 @@ public class SavePersonServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         if (email.equals("") || password.equals("")) {
+            getServletContext().setAttribute("result", Result.NOT_FOUND);
             response.sendRedirect("/errorEnter.jsp");
         } else {
             UserService userService = new UserService();
             if(userService.isUniqueLogin(email) && userService.isUniquePassword(password)) {
                 new UserService().addNewUser(new User(userService.getLastId() + 1, email, password, Role.CUSTOMER));
             } else {
+                getServletContext().setAttribute("result", Result.NOT_FOUND);
                 response.sendRedirect("/errorEnter.jsp");
             }
             getServletContext().getRequestDispatcher("/mainPage.jsp").forward(request, response);

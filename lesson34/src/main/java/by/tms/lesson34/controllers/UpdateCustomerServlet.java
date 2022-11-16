@@ -1,5 +1,6 @@
 package by.tms.lesson34.controllers;
 
+import by.tms.lesson34.entities.Result;
 import by.tms.lesson34.entities.User;
 import by.tms.lesson34.services.UserService;
 
@@ -34,18 +35,12 @@ public class UpdateCustomerServlet extends HttpServlet {
             }
         }
 
-        if (true) {
-            writer.println("<html>" +
-                    "<body>" +
-                    "<h1>Customer was updated</h1>" +
-                    "</body>" +
-                    "</html>");
+        if (flag) {
+            getServletContext().setAttribute("result", Result.SUCCESS_UPDATE);
+            getServletContext().getRequestDispatcher("/errorEnter.jsp").forward(request, response);
         } else {
-            writer.println("<html>" +
-                    "<body>" +
-                    "<h1>Customer not found</h1>" +
-                    "</body>" +
-                    "</html>");
+            getServletContext().setAttribute("result", Result.NOT_FOUND);
+            getServletContext().getRequestDispatcher("/errorEnter.jsp").forward(request, response);
         }
     }
 
