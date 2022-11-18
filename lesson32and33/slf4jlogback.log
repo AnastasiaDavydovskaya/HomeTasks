@@ -1,0 +1,10 @@
+02.11.2022 20:26:02.858 [main] INFO   b.t.l.util.LogUtils - Third admin Admin(super=User(id=2, daysOfActivity=34), login=admin3, password=admin33) has unique login=true and unique password=true
+02.11.2022 20:26:02.872 [main] INFO   b.t.l.util.LogUtils - Fourth admin Admin(super=User(id=3, daysOfActivity=87), login=admin4, password=admin44) has unique login=true and unique password=true
+02.11.2022 20:26:02.873 [main] INFO   b.t.l.util.LogUtils - First customer Customer(super=User(id=0, daysOfActivity=5), name=Nastya, address=Lenin) has address=Lenin and name=Nastya
+02.11.2022 20:26:02.875 [main] INFO   b.t.l.util.LogUtils - Second customer Customer(super=User(id=1, daysOfActivity=7), name=Olga, address=Kolban) has address=Kolban and name=Olga
+02.11.2022 20:26:02.881 [main] INFO   b.t.l.util.LogUtils - Admin1 Admin(super=User(id=0, daysOfActivity=30), login=newLogin, password=admin11) change login=newLogin
+02.11.2022 20:26:02.882 [main] INFO   b.t.l.util.LogUtils - Admin2 Admin(super=User(id=1, daysOfActivity=27), login=admin2, password=newPassword) change password=newPassword
+02.11.2022 20:26:02.883 [main] INFO   b.t.l.util.LogUtils - Admin3 Admin(super=User(id=2, daysOfActivity=34), login=admin3, password=admin33) has unique id=true
+02.11.2022 20:26:02.886 [main] INFO   b.t.l.util.LogUtils - Customer1 Customer(super=User(id=0, daysOfActivity=5), name=newName, address=Lenin) change name=newName
+02.11.2022 20:26:02.887 [main] INFO   b.t.l.util.LogUtils - Customer2 Customer(super=User(id=1, daysOfActivity=7), name=Olga, address=newAddress) change address=newAddress
+02.11.2022 20:26:02.887 [main] INFO   b.t.l.util.LogUtils - Customer3 Customer(super=User(id=1, daysOfActivity=7), name=Olga, address=Kolban) has unique id=false
