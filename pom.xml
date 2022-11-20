@@ -9,7 +9,6 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>lesson32and33</module>
-        <module>lesson34</module>
     </modules>
     <name>HomeTasks</name>
     <packaging>pom</packaging>

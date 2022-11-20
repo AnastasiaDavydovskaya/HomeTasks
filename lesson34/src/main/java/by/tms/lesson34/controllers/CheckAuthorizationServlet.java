@@ -1,8 +1,10 @@
 package by.tms.lesson34.controllers;
 
 import by.tms.lesson34.entities.Result;
+import by.tms.lesson34.entities.Role;
 import by.tms.lesson34.entities.User;
 import by.tms.lesson34.services.UserService;
+import by.tms.lesson34.services.ValidationService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,22 +21,18 @@ public class CheckAuthorizationServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        if (email.equals("") || password.equals("")) {
-            getServletContext().setAttribute("result", Result.NOT_FOUND);
-            response.sendRedirect("/errorEnter.jsp");
-        } else if (email.equals("admin@mail.ru") || password.equals("admin")) {
+        Role role = new ValidationService().validateUser(email, password);
+        if (Role.ADMIN.equals(role)) {
+            getServletContext().setAttribute("users", new UserService().getUsers());
             getServletContext().getRequestDispatcher("/adminPage.jsp").forward(request, response);
+        } else if (Role.CUSTOMER.equals(role)) {
+            getServletContext().getRequestDispatcher("/mainPage.jsp").forward(request, response);
         } else {
-            List<User> users = new UserService().getUsers();
-            for(User user : users) {
-                if(user.getLogin().equals(email) && user.getPassword().equals(password)) {
-                    getServletContext().getRequestDispatcher("/mainPage.jsp").forward(request, response);
-                }
-            }
             getServletContext().setAttribute("result", Result.NOT_FOUND);
             response.sendRedirect("/errorEnter.jsp");
         }
     }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

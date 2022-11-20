@@ -18,24 +18,15 @@ public class UpdateCustomerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter writer = response.getWriter();
-
         String originLogin = request.getParameter("to-update");
         String newLogin = request.getParameter("login-to-update");
         String newPassword = request.getParameter("password-to-update");
 
         UserService userService = new UserService();
-        List<User> users = userService.getUsers();
-        boolean flag = false;
-        for(User user: users) {
-            if(user.getLogin().equals(originLogin)) {
-                userService.changeLogin(user, newLogin, originLogin);
-                userService.changePassword(user, newPassword, originLogin);
-                flag = true;
-            }
-        }
+        User userWithNewLogin = userService.changeLogin(originLogin, newLogin);
+        User userWithNewPassword = userService.changePassword(originLogin, newPassword);
 
-        if (flag) {
+        if (userWithNewLogin != null && userWithNewPassword != null) {
             getServletContext().setAttribute("result", Result.SUCCESS_UPDATE);
             getServletContext().getRequestDispatcher("/errorEnter.jsp").forward(request, response);
         } else {

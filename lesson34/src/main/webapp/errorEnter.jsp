@@ -16,15 +16,13 @@
     <c:when test="${result eq 'SUCCESS_UPDATE'}">
         <h1 class="alert alert-success">User was updated</h1>
     </c:when>
+    <c:when test="${result eq 'SUCCESS_SAVE'}">
+        <h1 class="alert alert-success">User was saved</h1>
+    </c:when>
     <c:when test="${result eq 'NOT_FOUND'}">
         <h1 class="alert alert-warning">User not found</h1>
     </c:when>
 </c:choose>
-<div style="text-align: center;">
-    <a href="registration.jsp">Зарегистрироваться в системе</a>
-    <br>
-    <a href="index.jsp">Войти в систему</a>
-</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
         crossorigin="anonymous"></script>

@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet(name = "DeleteCustomerServlet", urlPatterns = "/delete/customer")
 public class DeleteCustomerServlet extends HttpServlet {
@@ -20,18 +18,9 @@ public class DeleteCustomerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("to-delete");
-        PrintWriter writer = response.getWriter();
 
         UserService userService = new UserService();
-        List<User> users = userService.getUsers();
-
-        boolean flag = false;
-        for(User user: users) {
-            if(user.getLogin().equals(login)) {
-                userService.deleteUser(user);
-                flag = true;
-            }
-        }
+        boolean flag = userService.deleteUser(login);
 
         if (flag) {
             getServletContext().setAttribute("result", Result.SUCCESS_DELETE);

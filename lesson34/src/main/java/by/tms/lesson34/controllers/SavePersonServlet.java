@@ -19,18 +19,14 @@ public class SavePersonServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        if (email.equals("") || password.equals("")) {
-            getServletContext().setAttribute("result", Result.NOT_FOUND);
+        boolean flag = new UserService().addNewUser(email, password);
+
+        if (flag) {
+            getServletContext().setAttribute("result", Result.SUCCESS_SAVE);
             response.sendRedirect("/errorEnter.jsp");
         } else {
-            UserService userService = new UserService();
-            if(userService.isUniqueLogin(email) && userService.isUniquePassword(password)) {
-                new UserService().addNewUser(new User(userService.getLastId() + 1, email, password, Role.CUSTOMER));
-            } else {
-                getServletContext().setAttribute("result", Result.NOT_FOUND);
-                response.sendRedirect("/errorEnter.jsp");
-            }
-            getServletContext().getRequestDispatcher("/mainPage.jsp").forward(request, response);
+            getServletContext().setAttribute("result", Result.NOT_FOUND);
+            response.sendRedirect("/errorEnter.jsp");
         }
     }
 

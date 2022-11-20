@@ -1,5 +1,6 @@
 package by.tms.lesson34.services;
 
+import by.tms.lesson34.entities.Role;
 import by.tms.lesson34.entities.User;
 import by.tms.lesson34.repositories.UserRepository;
 
@@ -10,8 +11,13 @@ public class UserService implements UserServiceable {
     private UserRepository userRepository = new UserRepository();
 
     @Override
-    public void addNewUser(User user) {
-        userRepository.createUser(user);
+    public boolean addNewUser(String email, String password) {
+        if (isUniqueLogin(email) && isUniquePassword(password)) {
+            userRepository.createUser(new User(getLastId() + 1, email, password, Role.CUSTOMER));
+            return true;
+        }
+
+        return false;
     }
 
     @Override
@@ -24,33 +30,54 @@ public class UserService implements UserServiceable {
     }
 
     @Override
-    public void deleteUser(User user) {
-        userRepository.deleteUser(user);
+    public boolean deleteUser(String login) {
+        List<User> users = getUsers();
+
+        for (User user : users) {
+            if (user.getLogin().equals(login)) {
+                userRepository.deleteUser(user);
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
-    public User changeLogin(User user, String newLogin, String originLogin) {
-        user.setLogin(newLogin);
-        userRepository.updateUser(user, originLogin);
+    public User changeLogin(String originLogin, String newLogin) {
+        List<User> users = getUsers();
+        for (User user : users) {
+            if (user.getLogin().equals(originLogin)) {
+                user.setLogin(newLogin);
+                userRepository.updateUser(user, originLogin);
+                return user;
+            }
+        }
 
-        return user;
+        return null;
     }
 
     @Override
-    public User changePassword(User user, String newPassword, String originLogin) {
-        user.setPassword(newPassword);
-        userRepository.updateUser(user, originLogin);
+    public User changePassword(String originLogin, String newPassword) {
+        List<User> users = getUsers();
+        for (User user : users) {
+            if (user.getLogin().equals(originLogin)) {
+                user.setPassword(newPassword);
+                userRepository.updateUser(user, originLogin);
+                return user;
+            }
+        }
 
-        return user;
+        return null;
     }
 
     @Override
     public boolean isUniqueLogin(String login) {
-        return userRepository.isUnique(login, "SELECT user.login FROM user;", "login");
+        return userRepository.isUniqueLogin(login);
     }
 
     @Override
     public boolean isUniquePassword(String password) {
-        return userRepository.isUnique(password, "SELECT user.password FROM user;", "password");
+        return userRepository.isUniquePassword(password);
     }
 }

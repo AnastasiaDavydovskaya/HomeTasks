@@ -11,5 +11,6 @@ public interface UserControllable extends Controllable {
     List<User> readUsers();
     void updateUser(User user, String login);
     void deleteUser(User user);
-    boolean isUnique(String string, String request, String column);
+    boolean isUniqueLogin(String login);
+    boolean isUniquePassword(String password);
 }

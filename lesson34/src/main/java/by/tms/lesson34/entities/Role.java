@@ -3,7 +3,8 @@ package by.tms.lesson34.entities;
 public enum Role {
 
     ADMIN("ADMIN"),
-    CUSTOMER("CUSTOMER");
+    CUSTOMER("CUSTOMER"),
+    UNDEFINED("UNDEFINED");
 
     private String role;
 

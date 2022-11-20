@@ -15,6 +15,9 @@ public class UserRepository implements UserControllable {
     private static final String UPDATE_USER = "UPDATE user SET login = ?, password = ? WHERE login = ?;";
     private static final String SELECT_USERS = "SELECT * FROM user;";
     private static final String SELECT_LAST_ID_USERS = "SELECT max(id) FROM user;";
+    private static final String SELECT_USER_LOGIN = "SELECT user.login FROM user;";
+    private static final String SELECT_USER_PASSWORD = "SELECT user.password FROM user;";
+
 
     @Override
     public Connection init() {
@@ -97,7 +100,16 @@ public class UserRepository implements UserControllable {
     }
 
     @Override
-    public boolean isUnique(String string, String request, String column) {
+    public boolean isUniqueLogin(String login) {
+        return isUnique(login, SELECT_USER_LOGIN, "login");
+    }
+
+    @Override
+    public boolean isUniquePassword(String password) {
+        return isUnique(password, SELECT_USER_PASSWORD, "password");
+    }
+
+    private boolean isUnique(String string, String request, String column) {
         try (Connection connection = init()) {
             PreparedStatement preparedStatement = connection.prepareStatement(request);
             ResultSet resultSet = preparedStatement.executeQuery();

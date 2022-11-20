@@ -6,12 +6,12 @@ import java.util.List;
 
 public interface UserServiceable {
 
-    void addNewUser(User user);
+    boolean addNewUser(String email, String password);
     List<User> getUsers();
     Long getLastId();
-    void deleteUser(User user);
-    User changeLogin(User user, String login, String parameter);
-    User changePassword(User user, String password, String parameter);
+    boolean deleteUser(String login);
+    User changeLogin(String parameter, String login);
+    User changePassword(String parameter, String password);
     boolean isUniqueLogin(String login);
     boolean isUniquePassword(String password);
 }
