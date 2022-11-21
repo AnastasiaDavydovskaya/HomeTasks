@@ -1,7 +1,6 @@
 package by.tms.lesson37.controllers;
 
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +29,10 @@ public abstract class FrontCommand {
     }
 
     public void target(String target) {
-        request.getRequestDispatcher(target + ".jsp");
+        try {
+            context.getRequestDispatcher("/" + target + ".jsp").forward(request, response);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
