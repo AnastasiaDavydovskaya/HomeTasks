@@ -21,11 +21,11 @@ public class LoggingAspect {
     public void repositories() {}
 
     @Around("services() || repositories()")
-    public void aroundServices(ProceedingJoinPoint proceedingJoinPoint) {
+    public Object aroundServices(ProceedingJoinPoint proceedingJoinPoint) {
         String methodName = proceedingJoinPoint.getSignature().getName();
         String className = proceedingJoinPoint.getSignature().getDeclaringType().getSimpleName();
         log.info("Called method '{}.{}': data {} of starting task", className, methodName, LocalTime.now());
-        Object result;
+        Object result = null;
         try {
             result = proceedingJoinPoint.proceed();
             log.info("Data {} of '{}.{}' method execution with result: {}", LocalTime.now(), className, methodName, result);
@@ -33,6 +33,7 @@ public class LoggingAspect {
             log.error("Error {} during service method '{}.{}' call", e.getMessage(), className, methodName);
         }
 
+        return result;
     }
 
 }
