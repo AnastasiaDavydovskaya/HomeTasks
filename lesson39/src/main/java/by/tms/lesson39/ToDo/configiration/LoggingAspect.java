@@ -17,12 +17,22 @@ public class LoggingAspect {
     @Pointcut("execution(* by.tms.lesson39.ToDo.services.*Service.*(..))")
     public void services() {}
 
-    @Around("services()")
+    @Pointcut("execution(* by.tms.lesson39.ToDo.repositories.*Repository.*(..))")
+    public void repositories() {}
+
+    @Around("services() || repositories()")
     public void aroundServices(ProceedingJoinPoint proceedingJoinPoint) {
         String methodName = proceedingJoinPoint.getSignature().getName();
         String className = proceedingJoinPoint.getSignature().getDeclaringType().getSimpleName();
         log.info("Called method '{}.{}': data {} of starting task", className, methodName, LocalTime.now());
-        log.info("Data {} of '{}.{}' method execution", LocalTime.now(), className, methodName);
+        Object result;
+        try {
+            result = proceedingJoinPoint.proceed();
+            log.info("Data {} of '{}.{}' method execution with result: {}", LocalTime.now(), className, methodName, result);
+        } catch (Throwable e) {
+            log.error("Error {} during service method '{}.{}' call", e.getMessage(), className, methodName);
+        }
+
     }
 
 }

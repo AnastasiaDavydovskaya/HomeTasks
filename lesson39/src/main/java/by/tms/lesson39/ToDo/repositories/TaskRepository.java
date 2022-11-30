@@ -3,6 +3,7 @@ package by.tms.lesson39.ToDo.repositories;
 import by.tms.lesson39.ToDo.entities.Task;
 import by.tms.lesson39.ToDo.mappers.TaskMapper;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -21,11 +22,11 @@ public class TaskRepository {
     private JdbcTemplate jdbcTemplate;
 
     public void addTask(Task task) {
-        jdbcTemplate.update(INSERT_TASK, task.getDescription(), task.getStatus());
+        jdbcTemplate.update(INSERT_TASK, task.getDescription(), String.valueOf(task.getStatus()));
     }
 
     public void changeStatusOfTask(Task task) {
-        jdbcTemplate.update(UPDATE_STATUS, task.getStatus(), task.getDescription());
+        jdbcTemplate.update(UPDATE_STATUS, String.valueOf(task.getStatus()), task.getDescription());
     }
 
     public List<Task> readTasks() {
