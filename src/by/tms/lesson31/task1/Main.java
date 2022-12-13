@@ -17,5 +17,15 @@ public class Main {
         logger.warn(order);
         logger.error(order);
         logger.debug(order);
+
+        Order order1 = new Order();
+        Item item1 = new Item("Ваза");
+        Item item2 = new Item();
+
+        logger.info("Create order={}", order1);
+        logger.info("Create item={}", item1);
+        logger.warn("Add item in order={}", order1.addItems(item1));
+        logger.error("Add empty item in order={}", order1.addItems(item2));
+        logger.debug("Describe information about order={}", order1.toString());
     }
 }
