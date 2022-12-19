@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Task list</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <div th:insert="parts/bootstrap"/>
+</head>
+<body>
+<form th:action="@{/addTask}" th:object="${task}" method="post">
+    <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" th:field="*{description}" id="description" placeholder="Description" class="form-control">
+        <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+</body>
+<div th:insert="parts/footer"/>
+</html>
