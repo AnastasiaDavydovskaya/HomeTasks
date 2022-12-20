@@ -15,9 +15,8 @@ public class Order {
     public Order() {
     }
 
-    public Integer addItems(Item...items) {
-        if(items != null) {
-
+    public Integer addItems(Item... items) {
+        if (items != null) {
             listItems.addAll(Arrays.asList(items));
 
             return items.length;
