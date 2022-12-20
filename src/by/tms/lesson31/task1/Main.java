@@ -17,6 +17,7 @@ public class Main {
         logger.warn(order);
         logger.error(order);
         logger.debug(order);
+
         Order order1 = new Order();
         Item item1 = new Item("Ваза");
         Item item2 = new Item();
