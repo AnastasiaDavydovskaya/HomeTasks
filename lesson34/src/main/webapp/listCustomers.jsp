@@ -1,6 +1,8 @@
 <%@ page import="by.tms.lesson34.services.UserService" %>
 <%@ page import="by.tms.lesson34.entities.User" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Список покупателей</title>
@@ -18,17 +20,15 @@
         <th scope="col">Пароль</th>
         <th scope="col">Роль</th>
     </tr>
-    <%
-        for (User user : new UserService().getUsers()) {
-            out.print(
-                    "<tr>" +
-                            "<td scope=\"row\">" + user.getId() + "</td>" +
-                            "<td>" + user.getLogin() + "</td>" +
-                            "<td>" + user.getPassword() + "</td>" +
-                            "<td>" + user.getRole() + "</td>" +
-                            "</tr>");
-        }
-    %>
+
+    <c:forEach items="${users}" var="user">
+        <tr>
+            <td scope="row">${user.id}</td>
+            <td>${user.login}</td>
+            <td>${user.password}</td>
+            <td>${user.role}</td>
+        </tr>
+    </c:forEach>
 </table>
 <div style="text-align: center;">
     <a href="adminPage.jsp">Главная страница администратора</a>

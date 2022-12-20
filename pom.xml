@@ -13,8 +13,11 @@
         <module>lesson34</module>
         <module>lesson35and36</module>
     </modules>
+
     <name>HomeTasks</name>
     <packaging>pom</packaging>
+    <name>HomeTasks</name>
+    <packaging>war</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
