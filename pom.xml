@@ -7,12 +7,17 @@
     <groupId>by.tms</groupId>
     <artifactId>HomeTasks</artifactId>
     <version>1.0-SNAPSHOT</version>
-    
+
     <modules>
         <module>lesson32and33</module>
+        <module>lesson34</module>
+        <module>lesson35and36</module>
     </modules>
+
     <name>HomeTasks</name>
     <packaging>pom</packaging>
+    <name>HomeTasks</name>
+    <packaging>war</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

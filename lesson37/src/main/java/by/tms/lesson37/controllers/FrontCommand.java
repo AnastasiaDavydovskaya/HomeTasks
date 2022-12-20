@@ -24,9 +24,7 @@ public abstract class FrontCommand {
     }
 
 
-    public void process() {
-        System.out.println("Front command is processed");
-    }
+    public abstract void process();
 
     public void target(String target) {
         try {
