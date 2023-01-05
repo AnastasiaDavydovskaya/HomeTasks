@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Регистрация</title>
+    <div th:insert="parts/bootstrap"/>
+</head>
+<body>
+<form th:action="@{/save/user}" th:object="${user}" method="post">
+    <div style="text-align: center;">
+        <h1>Добро пожаловать!</h1>
+        <h3>Зарегистрируйтесь в системе!</h3>
+    </div>
+    <div class="container">
+        <div class="container-class">
+            <div class="mb-3">
+                <label class="form-label" for="login">Логин</label>
+                <input type="text" class="form-control" th:field="*{login}" id="login" placeholder="Login">
+                <span th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="password">Пароль</label>
+                <input type="text" class="form-control" th:field="*{password}" id="password" placeholder="Password">
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Войти</button>
+        </div>
+    </div>
+</form>
+<div style="text-align: center;">
+    <a th:href="@{/enter}">Войти в систему</a>
+
+</div>
+</body>
+<div th:insert="parts/footer"/>
+</html>
