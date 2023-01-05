@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Task list</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <div th:insert="parts/bootstrap"/>
+</head>
+<body>
+<div class="container">
+    <h1>Task list</h1>
+    <table class="table">
+        <tr>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Progress in task</th>
+        </tr>
+        <tr th:each="task : ${tasks}">
+            <td th:text="${task.description}">Description</td>
+            <td th:text="${task.status}">Status</td>
+            <td><a th:href="@{/tasks/delete/{taskDescription}(taskDescription=${task.description})}">
+                <i class="fa fa-trash"></i></a>
+            </td>
+            <td><a th:href="@{/tasks/update/{taskDescription}(taskDescription=${task.description})}">
+                <i class="fa fa-refresh"></i></a>
+            </td>
+        </tr>
+    </table>
+    <div align="center">
+        <a th:href="@{/add}">Добавить задание</a>
+    </div>
+</div>
+</body>
+<div th:insert="parts/footer"/>
+</html>
