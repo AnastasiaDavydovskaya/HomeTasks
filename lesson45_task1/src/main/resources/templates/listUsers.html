@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список покупателей</title>
+    <div th:insert="parts/bootstrap"/>
+</head>
+<body>
+<div style="align-items: center">
+    <p>Покупатели:</p>
+</div>
+<table class="table table-hover">
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Логин</th>
+        <th scope="col">Пароль</th>
+        <th scope="col">Роль</th>
+        <th scope="col">Удалить</th>
+    </tr>
+
+    <tr th:each="user: ${users}">
+        <td th:text="${user.id}" />
+        <td th:text="${user.login}" />
+        <td th:text="${user.password}" />
+        <td th:text="${user.role}" />
+        <td><a th:href="@{/user/delete/{id}(id=${user.id})}">
+            <i class="fa fa-trash"></i></a>
+        </td>
+    </tr>
+</table>
+<div style="text-align: center;">
+    <a th:href="@{/adminPage}">Главная страница администратора</a>
+</div>
+</body>
+<div th:insert="parts/footer"/>
+</html>
