@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Task list</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <div th:insert="parts/bootstrap"/>
+</head>
+<body>
+<div class="container">
+    <h1>Task list</h1>
+    <table class="table">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Requirements</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Progress in task</th>
+        </tr>
+        <tr th:each="task, iStat : ${tasksPage.content}">
+            <td th:text="${task.id}">Id</td>
+            <td th:text="${task.description}">Description</td>
+            <td th:text="${task.status}">Status</td>
+            <td>
+                <form th:action="@{/files/{id}(id=${task.id})}">
+                    <button>Загрузить данные</button>
+                </form>
+                <form th:action="@{/files/{id}(id=${task.id})}" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file" class="form-control"/>
+                    <input type="submit" value="Download"/>
+                </form>
+            </td>
+            <td><a th:href="@{/tasks/delete/{id}(id=${task.id})}">
+                <i class="fa fa-trash"></i></a>
+            </td>
+            <td><a th:href="@{/tasks/update/{id}(id=${task.id})}">
+                <i class="fa fa-refresh"></i></a>
+            </td>
+        </tr>
+    </table>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <ul class="pagination col-lg-1" th:if="${tasksPage.totalPages > 0}"
+                 th:each="pageNumber : ${pageNumbers}">
+                <li class="page-item"><a class="page-link" th:href="@{/(size=${tasksPage.size}, page=${pageNumber})}"
+                   th:text=${pageNumber}>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+    <div align="center">
+        <form th:action="@{/addTask}" th:object="${task}" method="post">
+            <div class="form-group">
+                <label for="description">Add Task</label>
+                <input type="text" th:field="*{description}" id="description" placeholder="Description"
+                       class="form-control">
+                <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+                <br>
+                <input type="submit" value="Add"/>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</body>
+<div th:insert="parts/footer"/>
+</html>
