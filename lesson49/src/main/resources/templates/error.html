@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>Error</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="h2">
+        <div th:switch="${result}">
+            <p th:case="'MAX_LENGTH'">Description length cannot be more than 10 characters!</p>
+            <p th:case="*">Ooops, cannot find the requested page!</p>
+        </div>
+        <img src="/ooops.gif" class="card-img-top" style="border-radius: 50%" alt="...">
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+</body>
+</html>
